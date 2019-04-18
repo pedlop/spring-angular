@@ -1,0 +1,11 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - SpringularApplication",
+      "request": "launch",
+      "mainClass": "com.plop.springular.SpringularApplication",
+      "projectName": "springular"
+    }
+  ]
+}

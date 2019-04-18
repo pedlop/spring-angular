@@ -14,16 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
   private UserRepository userRepository;
-  private BCryptPasswordEncoder bcrypt;
+  private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-  UserController(UserRepository userRepository, BCryptPasswordEncoder bcrypt) {
+  UserController(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
     this.userRepository = userRepository;
-    this.bcrypt = bcrypt;
+    this.bCryptPasswordEncoder = bCryptPasswordEncoder;
   }
 
   @PostMapping("/create")
   public User create(@RequestBody User user) {
-    user.setPassword(bcrypt.encode(user.getPassword()));
+    user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
     return userRepository.save(user);
   }
 }
