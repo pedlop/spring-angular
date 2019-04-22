@@ -38,6 +38,7 @@ public class NoteController {
 
   @PostMapping
   public Note create(@RequestBody Note note) {
+    System.out.println("NOTE" + note);
     return repository.save(note);
   }
 
