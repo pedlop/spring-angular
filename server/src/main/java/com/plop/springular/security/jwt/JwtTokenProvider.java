@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
+
+import com.plop.springular.constants.SecurityConstants;
+
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
@@ -41,12 +44,8 @@ public class JwtTokenProvider {
     Date now = new Date();
     Date validity = new Date(now.getTime() + validityInMilliseconds);
 
-    return Jwts.builder()//
-        .setClaims(claims)//
-        .setIssuedAt(now)//
-        .setExpiration(validity)//
-        .signWith(SignatureAlgorithm.HS256, secretKey)//
-        .compact();
+    return Jwts.builder().setClaims(claims).setIssuedAt(now).setExpiration(validity)
+        .signWith(SignatureAlgorithm.HS256, secretKey).compact();
   }
 
   public Authentication getAuthentication(String token) {
@@ -59,8 +58,8 @@ public class JwtTokenProvider {
   }
 
   public String resolveToken(HttpServletRequest req) {
-    String bearerToken = req.getHeader("Authorization");
-    if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+    String bearerToken = req.getHeader(SecurityConstants.HEADER_STRING);
+    if (bearerToken != null && bearerToken.startsWith(SecurityConstants.TOKEN_PREFIX)) {
       return bearerToken.substring(7, bearerToken.length());
     }
     return null;

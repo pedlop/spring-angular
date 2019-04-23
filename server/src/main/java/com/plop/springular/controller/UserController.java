@@ -1,9 +1,5 @@
 package com.plop.springular.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import com.plop.springular.model.SuccessResponse;
 import com.plop.springular.model.User;
 import com.plop.springular.repository.UserRepository;
