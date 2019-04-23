@@ -1,0 +1,17 @@
+
+version: '3'
+services:
+  server:
+    build: .
+    command: java -jar target/springular-jar-with-dependencies.jar DNSBD:db PORTAWS:80
+    depends_on:
+      - db
+    ports:
+      - 80:80
+  db:
+    image: "mysql:8.0.15"
+    environment:
+      MYSQL_ROOT_PASSWORD: root12345
+      MYSQL_DATABASE: SpringAngular
+    volumes:
+      - "./db:/var/lib/mysql"
